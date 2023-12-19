@@ -1,7 +1,8 @@
 <h1>Reviews</h1>
-
+<%# Broken on mobile view %>
 <div id="reviews" class="center_review">
   <% @reviews.each do |review| %>
+    <%# Would be better to have this logic in a ReviewPolicy eg policy(review).index? or use a pundit scope to only return reviews that can be shown to this user %>
     <!--Only show if review is published, user is not review' owner, or if the review is not set to only me and user is following the review's owner-->
     <% if (review.owner != current_user) && (review.visibility != 'only_me' && review.owner.followers.include?(current_user)) %>
       <% if review.published? %>

@@ -76,6 +76,7 @@ task({ :sample_data => :environment }) do
   # Create reviews
   users.each do |user|
     rand(10).times do
+      # Would be nice to have images in sample reviews
       review = user.own_reviews.create(
         body: Faker::Lorem.paragraph,
         published: [true, false].sample,

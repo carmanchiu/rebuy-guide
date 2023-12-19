@@ -1,8 +1,12 @@
 <%= render @product %>
 
+<%# Seems like only certain roles should be able to do this %>
 <div>
   <%= link_to 'Create New Review', new_review_path(product_name: @product.name, product_id: @product.id) %> |
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
+  <%# Something like this should work %>
+  <% if policy(@product).edit? %>
+    <%= link_to "Edit this product", edit_product_path(@product) %>
+  <% end %> |
   <%= link_to "Back to products", products_path %>
   <%= button_to "Destroy this product", @product, method: :delete %>
 </div>

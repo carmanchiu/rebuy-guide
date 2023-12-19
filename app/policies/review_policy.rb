@@ -12,8 +12,15 @@ class ReviewPolicy < ApplicationPolicy
     # show if the user is the owner
     user == review.owner ||
     # or if the review is not set to only me and user is following review's owner
+      # seems like 'followers' would be a more appropriate visibility here, right?
       (review.visibility != 'only_me' && review.owner.followers.include?(user)) ||
       # or if the review's visibility is everyone
       review.visibility == 'everyone'
+  end
+
+  private 
+  # could add this to make it simpler
+  def owner?
+    user == review.owner
   end
 end

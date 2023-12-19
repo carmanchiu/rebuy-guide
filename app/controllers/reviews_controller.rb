@@ -83,6 +83,8 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:owner_id, :product_id, :rating, :would_repurchase, :body, :visibility, :published, :image)
     end
 
+    # seems like this could be handled in a review policy
+
   # Authorization
     def ensure_current_user_is_owner
       if current_user != @review.owner
@@ -97,6 +99,7 @@ class ReviewsController < ApplicationController
       end
     end
 
+    # REMOVE COMMENTED OUT CODE
     # def ensure_user_is_authorized
     #   authorize @review
     # rescue Pundit::NotAuthorizedError
